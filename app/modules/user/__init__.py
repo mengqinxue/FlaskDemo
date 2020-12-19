@@ -1,11 +1,11 @@
 from flask import Blueprint, request, render_template, redirect
 
-from app.modules.user.user import User
+from database import db
+from app.modules.user.module import UserModule
+
 
 user_bp = Blueprint('user', __name__)
 
-users = []
-users.append(User('max', '123', '12346'))
 
 @user_bp.route('/user')
 def user_center():
@@ -22,9 +22,16 @@ def register():
             password = request.form.get('password')
         phone = request.form.get('phone')
 
-        users.append(User(username, password, phone))
-        print(users)
-        return redirect('/user/show.html')
+        # Create data module
+        user = UserModule(username, password, phone)
+        print(user)
+
+        # Create user buffer
+        db.session.add(user)
+
+        # Commit
+        db.session.commit()
+        return 'Register Successfully!'
     else:
         return render_template('/user/register.html')
 
@@ -40,5 +47,5 @@ def logout():
 
 @user_bp.route('/user/show', methods=['GET', 'POST'])
 def show():
-    return render_template('/user/show.html', users=users)
+    return render_template('/user/show.html')
 

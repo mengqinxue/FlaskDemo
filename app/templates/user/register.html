@@ -5,7 +5,7 @@
     <title>Register</title>
 </head>
 <body>
-    <form action="/user/register" method="post">
+    <form action="{{ url_for('user.register') }}" method="post">
         <p><input type="text" name="username" placeholder="username"></p>
         <p><input type="password" name="password" placeholder="password"></p>
         <p><input type="password" name="repassword" placeholder="confirmed password"></p>
