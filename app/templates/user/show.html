@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block middle %}
+    <h1>User Info</h1>
+        <span>Number of Users: {{ users | length}} </span>
+    <table>
+        {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <a href="">change</a>
+                    <a href="javascript:;" onclick="del('{{ user.username }}')">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}
+
+{% block myjs %}
+    <script>
+        function del(username){
+            console.log(username)
+            location.href  '/del?username' + username
+        }
+    </script>
+{% endblock %}

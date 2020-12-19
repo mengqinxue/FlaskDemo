@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% block title %}
+    user register title
+{% endblock %}
+{% block middle %}
+    <form action="/user/register" method="post">
+        <p><input type="text" name="username" placeholder="username"></p>
+        <p><input type="password" name="password" placeholder="password"></p>
+        <p><input type="password" name="repassword" placeholder="confirmed password"></p>
+        <p><input type="number" name="phone" placeholder="mobile phone"></p>
+        <p><input type="submit" value="user register"></p>
+    </form>
+{% endblock %}
+{% block footer %}
+    user register footer
+{% endblock %}
